@@ -1,0 +1,19 @@
+[
+    
+      
+        {
+          "id": "connector_0001",
+          "component_type": "connector",
+          "manufacturer": "TE Connectivity",
+          "part_series": "AMP+ HVP 800",
+          "connector_type": "HV connector",
+          "current_rating_A": 200,
+          "voltage_rating_V": 850,
+          "image_path": "images/connectors/connector_0001.jpg",
+          "source_url": "https://www.te.com/en/products/connectors/automotive-connectors/intersection/amp-high-current-connector-system-hvp-800.html",
+          "license": "Manufacturer promotional",
+          "notes": "90-degree high-voltage plug. Widely used in Tesla and other EVs for battery-to-inverter connections. Features HVIL and 360-degree shielding."
+        }
+      
+  ]
+  

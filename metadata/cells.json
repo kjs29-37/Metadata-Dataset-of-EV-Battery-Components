@@ -1,0 +1,23 @@
+[
+    {
+      "id": "cell_0001",
+  "component_type": "cell",
+  "manufacturer": "Tesla",
+  "model": "4680",
+  "format": "4680 cylindrical",
+  "diameter_mm": 46,
+  "height_mm": 80,
+  "voltage_V": 3.7,
+  "capacity_mAh": 26000,
+  "energy_Wh": 96,
+  "chemistry": "NCA (Nickel Cobalt Aluminum)",
+  "vehicle_models": ["Tesla Model Y", "Tesla Cybertruck", "Tesla Semi"],
+  "image_path": "images/cells/cell_0001.jpg",
+  "source_url": "[https://debadipb.substack.com/p/nickel-cobalt-aluminum-nca-batteries]",
+  "license": "Public domain/Educational use",
+  "notes": "Tesla's newest large-format cylindrical cell with tabless design. Shows size comparison with smaller Tesla cells. 5x energy capacity of 18650 format.",
+  "special_features": ["Tabless design", "Structural integration", "In-house Tesla production"],
+  "date_added": "2025-11-14"
+    }
+  ]
+  

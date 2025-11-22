@@ -1,0 +1,18 @@
+[
+  {
+    "id": "bms_0001",
+    "component_type": "bms",
+    "manufacturer": "Tesla Motors",
+    "model": "Model S Battery Module BMS (PCBA 1030796)",
+    "features": [
+      "Cell voltage monitoring",
+      "Cell balancing",
+      "Temperature monitoring"
+    ],
+    "supports_cell_count": 6,
+    "image_path": "images/bms/bms_0001.jpg",
+    "source_url": "https://circuitdigest.com/article/tesla-model-s-battery-system-an-engineers-perspective",
+    "license": "Article / Informational",
+    "notes": "Module-level Battery Management System (BMS) board from a Tesla Model S battery pack. This board monitors and balances a single group of 6 cells."
+  }
+]
