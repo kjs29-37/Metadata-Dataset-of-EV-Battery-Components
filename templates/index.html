@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EV Battery Dataset Manager</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <div class="row mb-4 align-items-center">
+        <div class="col">
+            <h1 class="display-6">🔋 EV Solutions</h1>
+            <p class="text-muted">Meta Dataset </p>
+        </div>
+        <div class="col-auto">
+            <a href="/add" class="btn btn-success">+ Add Component</a>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <h5>Browse by Vehicle Platform</h5>
+            <div class="d-flex gap-2">
+                <a href="/vehicle/Tesla" class="btn btn-outline-dark btn-sm">Tesla</a>
+                <a href="/vehicle/Nissan" class="btn btn-outline-dark btn-sm">Nissan</a>
+                <a href="/vehicle/Audi" class="btn btn-outline-dark btn-sm">Audi</a>
+                <a href="/" class="btn btn-outline-secondary btn-sm">Show All</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card p-3 mb-4 shadow-sm">
+        <form class="row g-3" action="/" method="GET">
+            <div class="col-md-4">
+                <select name="type" class="form-select" onchange="this.form.submit()">
+                    <option value="all">All Types</option>
+                    <option value="cell" {% if request.args.get('type') == 'cell' %}selected{% endif %}>Cells</option>
+                    <option value="bms" {% if request.args.get('type') == 'bms' %}selected{% endif %}>BMS</option>
+                    <option value="connector" {% if request.args.get('type') == 'connector' %}selected{% endif %}>Connectors</option>
+                    <option value="cable" {% if request.args.get('type') == 'cable' %}selected{% endif %}>Cables</option>
+                    <option value="busbar" {% if request.args.get('type') == 'busbar' %}selected{% endif %}>Busbars</option>
+                    <option value="casing" {% if request.args.get('type') == 'casing' %}selected{% endif %}>Casings</option>
+                    <option value="hardware" {% if request.args.get('type') == 'hardware' %}selected{% endif %}>Hardware</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <input type="text" name="q" class="form-control" placeholder="Search ID, Model, or Manufacturer..." value="{{ request.args.get('q', '') }}">
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary w-100">Search</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for item in components %}
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                <div style="height: 200px; background-color: #eee; overflow: hidden;" class="d-flex align-items-center justify-content-center">
+                    <img src="/static/{{ item['image_path'] }}" 
+                         alt="{{ item['model'] }}" 
+                         style="max-height: 100%; max-width: 100%; object-fit: contain;"
+                         onerror="this.onerror=null; this.src='https://placehold.co/600x400?text=No+Image';">
+                </div>
+                <div class="card-body">
+                    <span class="badge bg-secondary mb-2">{{ item['type']|upper }}</span>
+                    <h5 class="card-title">{{ item['manufacturer'] }}</h5>
+                    <p class="card-text text-muted text-truncate">{{ item['model'] }}</p>
+                    <small class="text-secondary">ID: {{ item['id'] }}</small>
+                </div>
+                <div class="card-footer bg-white border-top-0">
+                    <a href="{{ url_for('view_detail', id=item['id']) }}" class="btn btn-sm btn-outline-primary w-100">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="col-12 text-center py-5">
+            <h3 class="text-muted">No components found.</h3>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>

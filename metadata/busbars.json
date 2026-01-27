@@ -1,0 +1,16 @@
+[
+    {
+      "id": "busbar_0001",
+      "component_type": "busbar",
+      "manufacturer": "",
+      "material": "copper/aluminum",
+      "voltage_rating_V": "",
+      "current_rating_A": "",
+      "vehicle_models": "tesla model 3",
+      "image_path": "images/busbars/busbar_0001.jpg",
+      "source": "",
+      "source_attribution": "",
+      "license": "",
+      "notes": ""
+    }
+  ]

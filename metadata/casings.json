@@ -1,0 +1,14 @@
+[
+    {
+      "id": "casing_0001",
+      "component_type": "casing",
+      "manufacturer": " Tesla ",
+      "material": "aluminum/composite",
+      "vehicle_models": "tesla model 3",
+      "image_path": "images/casings/casing_0001.jpg",
+      "source": " lorum ",
+      "source_attribution": "frfrf",
+      "license": "gggg",
+      "notes": ""
+    }
+  ]

@@ -1,0 +1,15 @@
+[
+    {
+      "id": "hardware_0001",
+      "component_type": "hardware",
+      "part_type": "nut/bolt/bracket",
+      "material": " aluminum",
+      "specifications": "",
+      "vehicle_models": "Tesla model 3/Y",
+      "image_path": "images/hardware/hardware_0001.jpg",
+      "source": "",
+      "source_attribution": "",
+      "license": "",
+      "notes": ""
+    }
+  ]

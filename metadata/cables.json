@@ -1,0 +1,20 @@
+[
+    {
+      "id": "cable_0001",
+      "component_type": "cable",
+      "manufacturer": "Coroplast / Huber+Suhner",
+      "model": "Shielded HV Battery Cable",
+      "specs": {
+        "cross_section": "50mm²",
+        "conductor_material": "Stranded Copper",
+        "insulation": "Silicone Rubber (Orange)",
+        "shielding": "Tinned Copper Braid (EMC Protection)",
+        "temp_rating": "-40°C to +180°C"
+      },
+      "vehicle_models": ["Tesla Model S", "Audi e-tron", "Porsche Taycan"],
+      "image_path": "images/cables/cable_0001.jpg",
+      "source_url": "https://www.coroplast-tape.com/en/products/high-voltage-cables/",
+      "license": "Representative / Educational",
+      "notes": "High-voltage interconnect cable. Features distinct orange insulation for safety and internal braided shielding to prevent electromagnetic interference (EMI)."
+    }
+  ]
