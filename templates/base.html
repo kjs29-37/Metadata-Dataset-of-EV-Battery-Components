@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title or "CellBase — EV Battery Dataset" }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="announce-bar">Open Research Dataset &mdash; EV Battery Component Metadata &mdash; Built for AI Training &amp; Engineering Research</div>
+
+<header class="header">
+  <div class="header-top">
+    <div class="header-left"></div>
+
+    <a class="brand" href="{{ url_for('landing') }}">
+      <div class="brand-logo">
+        <img src="{{ url_for('static', filename='images/cellbase_logo.png') }}"
+             alt="CellBase" class="brand-logo-img">
+        <div>
+          <div class="brand-name">Cell<span>Base</span></div>
+          <div class="brand-tagline">EV Battery Component Dataset</div>
+        </div>
+      </div>
+    </a>
+
+    <div class="header-right"></div>
+  </div>
+
+  <nav class="header-nav">
+    <div class="header-nav-inner">
+      <a href="{{ url_for('landing') }}" class="{{ 'active' if request.path == '/' else '' }}">Home</a>
+      <a href="{{ url_for('index') }}" class="{{ 'active' if request.path == '/browse' else '' }}">Browse</a>
+      <a href="{{ url_for('about') }}" class="{{ 'active' if request.path == '/about' else '' }}">About</a>
+      {% if session.get('username') %}
+        <a href="{{ url_for('admin_dashboard') }}" class="{{ 'active' if request.path.startswith('/admin') else '' }}">
+          Admin
+        </a>
+        <a href="{{ url_for('add_component') }}" class="nav-cta {{ 'active' if request.path.startswith('/add') else '' }}">Add Component</a>
+        <a href="{{ url_for('logout') }}" style="margin-left:4px;font-size:0.72rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);padding:0 14px;height:44px;display:flex;align-items:center;border-bottom:2px solid transparent;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-muted)'">
+          Sign Out ({{ session.username }})
+        </a>
+      {% else %}
+        <a href="{{ url_for('login') }}" class="{{ 'active' if request.path == '/login' else '' }}" style="margin-left:4px;">Sign In</a>
+      {% endif %}
+    </div>
+  </nav>
+</header>
+
+<div class="container">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="flash {{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  {% block content %}{% endblock %}
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span class="footer-brand">CellBase</span>
+    <span>CS3IP Final Year Project &mdash; Aston University</span>
+    <span>Built for research &amp; AI training purposes</span>
+  </div>
+</footer>
+
+</body>
+</html>

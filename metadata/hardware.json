@@ -1,15 +1,107 @@
 [
-    {
-      "id": "hardware_0001",
-      "component_type": "hardware",
-      "part_type": "nut/bolt/bracket",
-      "material": " aluminum",
-      "specifications": "",
-      "vehicle_models": "Tesla model 3/Y",
-      "image_path": "images/hardware/hardware_0001.jpg",
-      "source": "",
-      "source_attribution": "",
-      "license": "",
-      "notes": ""
-    }
-  ]
+  {
+    "id": "chevy_bolt_hardware_0001",
+    "component_type": "hardware",
+    "manufacturer": "GM",
+    "model": "Chevrolet Bolt EV Battery Pack Mounting Bolts & Brackets",
+    "image_path": "images/hardware/chevy_bolt_hardware_001.jpg",
+    "source_url": "https://www.diyelectriccar.com/threads/chevy-bolt-battery-pack-teardown.194132/",
+    "license": "Educational reference",
+    "notes": "",
+    "part_type": "nut/bolt/bracket",
+    "material": "High-strength Steel / Aluminium alloy",
+    "date_added": "2026-03-12"
+  },
+  {
+    "id": "ford_mache_hardware_0001",
+    "component_type": "hardware",
+    "manufacturer": "Ford",
+    "model": "Ford Mustang Mach-E Battery Pack Mounting Bolts & Brackets",
+    "image_path": "images/hardware/Mach-e_hardware.png",
+    "source_url": "https://www.youtube.com/watch?v=eVi0MQFy9K8",
+    "license": "Educational reference",
+    "notes": "High-strength steel mounting bolts and brackets securing the Mach-E skateboard battery pack to the vehicle chassis. Fasteners thread into reinforced underbody mounting points, distributing pack weight evenly and providing crash structure integration. Reference from hardware inspection teardown video.",
+    "part_type": "nut/bolt/bracket",
+    "material": "High-strength Steel",
+    "vehicle_models": [
+      "Ford Mustang Mach-E Extended Range",
+      "Ford Mustang Mach-E GT"
+    ],
+    "date_added": "2026-03-26"
+  },
+  {
+    "id": "hardware_0001",
+    "component_type": "hardware",
+    "manufacturer": "Tesla",
+    "model": "Battery pack mounting hardware (nuts/bolts/brackets)",
+    "image_path": "images/hardware/hardware_0001.jpg",
+    "source_url": "N/A",
+    "license": "Educational reference",
+    "notes": "",
+    "part_type": "nut/bolt/bracket",
+    "material": "Aluminum / Steel (mixed)",
+    "date_added": "2025-11-14"
+  },
+  {
+    "id": "hyundai_ioniq5_hardware_0001",
+    "component_type": "hardware",
+    "manufacturer": "Hyundai",
+    "model": "Ioniq 5 Battery Pack Mounting Bolts",
+    "image_path": "",
+    "source_url": "https://www.hyundai.co.uk/electric-cars/ioniq5",
+    "license": "Educational reference",
+    "notes": "Structural mounting hardware for E-GMP pack.",
+    "part_type": "nut/bolt/bracket",
+    "material": "High-strength Steel",
+    "vehicle_models": [
+      "Hyundai Ioniq 5"
+    ],
+    "date_added": "2026-03-24"
+  },
+  {
+    "id": "nissan_leaf_hardware_0001",
+    "component_type": "hardware",
+    "manufacturer": "Nissan",
+    "model": "Leaf Gen 1 Battery Pack Casing Fasteners",
+    "image_path": "images/hardware/nissan_leaf_hardware_001.jpg",
+    "source_url": "https://www.ebay.com/itm/275616676936",
+    "license": "Educational reference",
+    "notes": "",
+    "part_type": "nut/bolt/bracket",
+    "material": "Steel (typical)",
+    "date_added": "2026-02-27"
+  },
+  {
+    "id": "renault_zoe_hardware_0001",
+    "component_type": "hardware",
+    "manufacturer": "Renault",
+    "model": "Zoe Z.E. 50 Battery Mounting Fasteners",
+    "image_path": "",
+    "source_url": "https://www.renault.co.uk/electric-vehicles/zoe/range-and-battery.html",
+    "license": "Educational reference",
+    "notes": "Fasteners securing the Z.E. 50 pack to vehicle chassis.",
+    "part_type": "nut/bolt/bracket",
+    "material": "Steel",
+    "vehicle_models": [
+      "Renault Zoe Z.E. 50"
+    ],
+    "date_added": "2026-03-24"
+  },
+  {
+    "id": "vw_id4_hardware_0001",
+    "component_type": "hardware",
+    "manufacturer": "Volkswagen AG",
+    "model": "Volkswagen ID.4 MEB Battery Pack Mounting Bolts & Brackets",
+    "image_path": "images/hardware/ID4_bolts.webp",
+    "source_url": "https://www.batterydesign.net/volkswagen-meb-battery-pack-id-family/",
+    "license": "Educational reference",
+    "notes": "Structural mounting hardware securing the MEB skateboard battery pack to the vehicle chassis underbody. Documented in Battery Design's MEB pack analysis. High-strength steel fasteners distribute pack weight evenly across reinforced chassis mounting points.",
+    "part_type": "nut/bolt/bracket",
+    "material": "High-strength Steel",
+    "vehicle_models": [
+      "Volkswagen ID.4",
+      "Volkswagen ID.3"
+    ],
+    "date_added": "2026-03-26"
+  }
+]

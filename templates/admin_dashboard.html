@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div style="margin-bottom:32px;">
+  <div class="hero-eyebrow">Admin Panel</div>
+  <h1 class="page-title">Dashboard</h1>
+  <p style="color:var(--text-muted);font-size:0.9rem;">
+    Welcome back, <strong>{{ session.username }}</strong> &mdash; {{ session.role }}
+  </p>
+</div>
+
+<!-- Admin Nav -->
+<div style="display:flex;gap:8px;margin-bottom:40px;flex-wrap:wrap;">
+  <a href="{{ url_for('admin_dashboard') }}" class="btn">Dashboard</a>
+  <a href="{{ url_for('admin_components') }}" class="btn secondary">All Components</a>
+  <a href="{{ url_for('admin_hidden') }}" class="btn secondary">Hidden Components</a>
+  <a href="{{ url_for('add_component') }}" class="btn secondary">Add Component</a>
+  <a href="{{ url_for('index') }}" class="btn secondary">View Public Site</a>
+</div>
+
+<!-- Stats Grid -->
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;
+            background:var(--border);border:1px solid var(--border);
+            border-radius:var(--radius-md);overflow:hidden;margin-bottom:40px;">
+
+  {% set stat_items = [
+    ('Total Components', stats.total, 'All entries in dataset'),
+    ('With Images', stats.with_images, stats.image_pct|string + '% complete'),
+    ('Hidden', stats.hidden, 'Not shown publicly'),
+    ('Vehicle Platforms', stats.vehicles, 'Covered in dataset'),
+    ('Component Types', stats.component_types, 'Categories'),
+  ] %}
+
+  {% for label, value, sub in stat_items %}
+  <div style="background:var(--surface);padding:24px;text-align:center;">
+    <div style="font-family:var(--font-display);font-size:2.2rem;font-weight:700;
+                color:var(--ink);line-height:1;">{{ value }}</div>
+    <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.08em;
+                text-transform:uppercase;color:var(--text-muted);margin-top:6px;">{{ label }}</div>
+    <div style="font-size:0.75rem;color:var(--text-light);margin-top:4px;">{{ sub }}</div>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- Two column: Type breakdown + Vehicle breakdown -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:40px;">
+
+  <!-- Component types -->
+  <div class="panel">
+    <h3>By Component Type</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:0.84rem;">
+      <thead>
+        <tr style="border-bottom:2px solid var(--border);">
+          <th style="text-align:left;padding:8px 0;font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);">Type</th>
+          <th style="text-align:right;padding:8px 0;font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);">Total</th>
+          <th style="text-align:right;padding:8px 0;font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);">Images</th>
+          <th style="text-align:right;padding:8px 0;font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);">Hidden</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in type_breakdown %}
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:10px 0;font-weight:600;text-transform:capitalize;">{{ row['type'] }}</td>
+          <td style="padding:10px 0;text-align:right;">{{ row['total'] }}</td>
+          <td style="padding:10px 0;text-align:right;color:var(--green);">{{ row['with_images'] }}</td>
+          <td style="padding:10px 0;text-align:right;color:{% if row['hidden'] > 0 %}var(--gold){% else %}var(--text-light){% endif %};">{{ row['hidden'] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Vehicle breakdown -->
+  <div class="panel">
+    <h3>By Vehicle Platform</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:0.84rem;">
+      <thead>
+        <tr style="border-bottom:2px solid var(--border);">
+          <th style="text-align:left;padding:8px 0;font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);">Vehicle</th>
+          <th style="text-align:right;padding:8px 0;font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);">Total</th>
+          <th style="text-align:right;padding:8px 0;font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);">Images</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in vehicle_breakdown %}
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:10px 0;font-weight:600;">{{ row['name'] }}</td>
+          <td style="padding:10px 0;text-align:right;">{{ row['total'] }}</td>
+          <td style="padding:10px 0;text-align:right;color:var(--green);">{{ row['with_images'] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- Recent components -->
+<div class="panel">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+    <h3 style="margin-bottom:0;">Recently Added / Modified</h3>
+    <a href="{{ url_for('admin_components') }}" style="font-size:0.75rem;color:var(--gold);text-decoration:underline;">View all</a>
+  </div>
+  <table style="width:100%;border-collapse:collapse;font-size:0.84rem;">
+    <thead>
+      <tr style="border-bottom:2px solid var(--border);">
+        <th style="text-align:left;padding:8px 0;font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);">ID</th>
+        <th style="text-align:left;padding:8px 0;font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);">Type</th>
+        <th style="text-align:left;padding:8px 0;font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);">Manufacturer</th>
+        <th style="text-align:center;padding:8px 0;font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);">Image</th>
+        <th style="text-align:center;padding:8px 0;font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);">Status</th>
+        <th style="text-align:right;padding:8px 0;font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for c in recent %}
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:10px 0;font-family:monospace;font-size:0.78rem;color:var(--text-muted);">{{ c['id'] }}</td>
+        <td style="padding:10px 0;text-transform:capitalize;">{{ c['type'] }}</td>
+        <td style="padding:10px 0;font-weight:600;">{{ c['manufacturer'] }}</td>
+        <td style="padding:10px 0;text-align:center;">
+          {% if c['image_path'] %}
+            <span style="color:var(--green);font-size:0.72rem;font-weight:700;">✓</span>
+          {% else %}
+            <span style="color:var(--text-light);font-size:0.72rem;">—</span>
+          {% endif %}
+        </td>
+        <td style="padding:10px 0;text-align:center;">
+          {% if c['hidden'] %}
+            <span style="background:var(--gold-light);color:var(--gold);font-size:0.65rem;font-weight:700;
+                         letter-spacing:0.06em;text-transform:uppercase;padding:2px 8px;border-radius:3px;">Hidden</span>
+          {% else %}
+            <span style="background:var(--green-light);color:var(--green);font-size:0.65rem;font-weight:700;
+                         letter-spacing:0.06em;text-transform:uppercase;padding:2px 8px;border-radius:3px;">Visible</span>
+          {% endif %}
+        </td>
+        <td style="padding:10px 0;text-align:right;">
+          <form method="post" action="{{ url_for('admin_toggle_hide', id=c['id']) }}" style="display:inline;">
+            <button type="submit" style="background:none;border:1px solid var(--border-mid);
+                    border-radius:4px;padding:4px 10px;font-size:0.72rem;cursor:pointer;
+                    color:var(--text-muted);font-family:var(--font-body);">
+              {{ 'Show' if c['hidden'] else 'Hide' }}
+            </button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

@@ -1,16 +1,108 @@
 [
-    {
-      "id": "busbar_0001",
-      "component_type": "busbar",
-      "manufacturer": "",
-      "material": "copper/aluminum",
-      "voltage_rating_V": "",
-      "current_rating_A": "",
-      "vehicle_models": "tesla model 3",
-      "image_path": "images/busbars/busbar_0001.jpg",
-      "source": "",
-      "source_attribution": "",
-      "license": "",
-      "notes": ""
-    }
-  ]
+  {
+    "id": "busbar_0001",
+    "component_type": "busbars",
+    "manufacturer": "Tesla",
+    "model": "Model 3 Battery Module Busbar",
+    "image_path": "images/busbars/busbar_0001.jpg",
+    "source_url": "N/A",
+    "license": "Educational reference",
+    "notes": "",
+    "material": "Copper/Aluminum",
+    "voltage_rating_V": 400,
+    "current_rating_A": 300,
+    "date_added": "2025-11-14"
+  },
+  {
+    "id": "chevy_bolt_busbar_0001",
+    "component_type": "busbars",
+    "manufacturer": "GM / LG Energy Solution",
+    "model": "Chevrolet Bolt EV Module Interconnect Busbar",
+    "image_path": "images/busbars/chevy_bolt_busbar001.png",
+    "source_url": "https://www.diyelectriccar.com/threads/chevy-bolt-battery-pack-teardown.194132/",
+    "license": "Educational reference",
+    "notes": "",
+    "material": "Aluminum (anodised)",
+    "voltage_rating_V": 400,
+    "current_rating_A": 250,
+    "date_added": "2026-03-12"
+  },
+  {
+    "id": "ford_mache_busbar_0001",
+    "component_type": "busbars",
+    "manufacturer": "Ford",
+    "model": "Ford Mustang Mach-E Battery Module Interconnect Busbar",
+    "image_path": "images/busbars/Mach-e_busbar.png",
+    "source_url": "https://www.youtube.com/watch?v=3_iRpKx9VmI",
+    "license": "Educational reference",
+    "notes": "Aluminium busbar connecting pouch cell modules within the Mach-E 98.7kWh extended range pack. Reference from teardown video showing module-level interconnection during disassembly.",
+    "material": "Aluminium",
+    "voltage_rating_V": 400,
+    "current_rating_A": 300,
+    "vehicle_models": [
+      "Ford Mustang Mach-E Extended Range"
+    ],
+    "date_added": "2026-03-26"
+  },
+  {
+    "id": "hyundai_ioniq5_busbar_0001",
+    "component_type": "busbars",
+    "manufacturer": "Hyundai",
+    "model": "Ioniq 5 E-GMP Module Busbar",
+    "image_path": "",
+    "source_url": "https://www.hyundai.co.uk/electric-cars/ioniq5",
+    "license": "Educational reference",
+    "notes": "800V-rated aluminium busbar connecting E-GMP modules.",
+    "material": "Aluminium",
+    "voltage_rating_V": 800,
+    "vehicle_models": [
+      "Hyundai Ioniq 5"
+    ],
+    "date_added": "2026-03-24"
+  },
+  {
+    "id": "nissan_leaf_busbar_0001",
+    "component_type": "busbars",
+    "manufacturer": "Nissan",
+    "model": "Leaf Gen 1 Battery Module Bus Bar Kit",
+    "image_path": "images/busbars/nissan_leaf_busbar_001.jpg",
+    "source_url": "https://greentecauto.com/hybrid-battery/repurposed-batteries/energy/nissan-leaf-bus-bar-kit/",
+    "license": "Educational reference",
+    "notes": "",
+    "material": "Copper",
+    "date_added": "2026-02-27"
+  },
+  {
+    "id": "renault_zoe_busbar_0001",
+    "component_type": "busbars",
+    "manufacturer": "Renault",
+    "model": "Zoe Z.E. 50 Module Busbar",
+    "image_path": "",
+    "source_url": "https://www.renault.co.uk/electric-vehicles/zoe/range-and-battery.html",
+    "license": "Educational reference",
+    "notes": "Copper busbar connecting pouch cell modules in the Zoe 52kWh pack.",
+    "material": "Copper",
+    "vehicle_models": [
+      "Renault Zoe Z.E. 50"
+    ],
+    "date_added": "2026-03-24"
+  },
+  {
+    "id": "vw_id4_busbar_0001",
+    "component_type": "busbars",
+    "manufacturer": "Volkswagen AG",
+    "model": "Volkswagen ID.4 MEB Module Interconnect Busbar",
+    "image_path": "images/busbars/ID4_busbar.png",
+    "source_url": "https://www.youtube.com/watch?v=uP-lOsd4cVY",
+    "license": "Educational reference",
+    "notes": "Aluminium busbar connecting prismatic cell modules within the MEB 77kWh battery pack. Lightweight aluminium chosen over copper for weight reduction. Visible in teardown video showing module-level disassembly.",
+    "material": "Aluminium",
+    "voltage_rating_V": 400,
+    "current_rating_A": 250,
+    "vehicle_models": [
+      "Volkswagen ID.4",
+      "Volkswagen ID.3"
+    ],
+    "date_added": "2026-03-26"
+  }
+]

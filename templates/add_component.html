@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div style="text-align:center;padding:48px 0 36px;border-bottom:1px solid var(--border);margin-bottom:48px;">
+  <div class="hero-eyebrow">Dataset Management</div>
+  <h1 class="page-title">Add Component</h1>
+  <p class="page-subtitle">Upload a new battery component and its metadata to the dataset.</p>
+</div>
+
+<div class="panel" style="max-width:680px;margin:0 auto;">
+  <form method="post" enctype="multipart/form-data">
+
+    <div class="form-row">
+      <label for="id">Component ID</label>
+      <input class="input" name="id" id="id" required placeholder="e.g. vw_id4_cell_001">
+    </div>
+
+    <div class="form-row">
+      <label for="type">Component Type</label>
+      <select name="type" id="type" required>
+        <option value="cells">Cells</option>
+        <option value="bms">BMS</option>
+        <option value="connectors">Connectors</option>
+        <option value="cables">Cables</option>
+        <option value="busbars">Busbars</option>
+        <option value="casings">Casings</option>
+        <option value="hardware">Hardware</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <label for="manufacturer">Manufacturer</label>
+      <input class="input" name="manufacturer" id="manufacturer" required placeholder="e.g. Volkswagen AG">
+    </div>
+
+    <div class="form-row">
+      <label for="model">Model <span style="font-weight:400;text-transform:none;letter-spacing:0;">(optional)</span></label>
+      <input class="input" name="model" id="model" placeholder="e.g. ID.4 Pro Performance Cell">
+    </div>
+
+    <div class="form-row">
+      <label for="image">Component Image</label>
+      <input class="input" type="file" name="image" id="image" accept=".png,.jpg,.jpeg">
+      <div style="font-size:0.75rem;color:var(--text-muted);margin-top:4px;">JPG or PNG. Leave blank to add image later.</div>
+    </div>
+
+    <div style="display:flex;gap:10px;margin-top:8px;">
+      <button class="btn" type="submit">Add to Dataset</button>
+      <a class="btn secondary" href="{{ url_for('index') }}">Cancel</a>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

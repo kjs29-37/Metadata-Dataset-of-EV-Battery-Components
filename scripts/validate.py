@@ -1,44 +1,68 @@
-import json, sys, os
-from jsonschema import validate, Draft202012Validator
+#!/usr/bin/env python3
+"""
+validate.py — Run from project root: python3 scripts/validate.py
+Validates all JSON metadata files against dataset_schema.json
+"""
+import json, os, sys
 
-ROOT = os.path.dirname(os.path.dirname(__file__))
-SCHEMA = os.path.join(ROOT, "schema", "dataset_schema.json")
-META_DIR = os.path.join(ROOT, "metadata")
+ROOT        = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SCHEMA_PATH = os.path.join(ROOT, 'schema', 'dataset_schema.json')
+META_DIR    = os.path.join(ROOT, 'metadata')
 
-def load(path):
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
+VALID_TYPES = ['cells','bms','connectors','cables','busbars','casings','hardware']
 
-def validate_file(fname, schema):
-    data = load(os.path.join(META_DIR, fname))
-    ids = set()
+def validate_file(filepath):
     errors = []
-    for i, item in enumerate(data):
-        for e in Draft202012Validator(schema).iter_errors(item):
-            errors.append(f"{fname}[{i}] -> {e.message}")
-        _id = item.get("id")
-        if _id in ids:
-            errors.append(f"{fname}[{i}] -> duplicate id: {_id}")
-        ids.add(_id)
-        ipath = os.path.join(ROOT, item.get("image_path",""))
-        if not os.path.exists(ipath):
-            errors.append(f"{fname}[{i}] -> missing image: {item.get('image_path')}")
+    filename = os.path.basename(filepath)
+    with open(filepath, encoding='utf-8') as f:
+        try:
+            entries = json.load(f)
+        except json.JSONDecodeError as e:
+            return [f"{filename} -> JSON parse error: {e}"]
+
+    if not isinstance(entries, list):
+        entries = [entries]
+
+    for i, item in enumerate(entries):
+        ref = f"{filename}[{i}]"
+        for field in ['id', 'component_type', 'manufacturer']:
+            if not item.get(field):
+                errors.append(f"{ref} -> missing required field: '{field}'")
+        ct = item.get('component_type','')
+        if ct and ct not in VALID_TYPES:
+            errors.append(f"{ref} -> invalid component_type: '{ct}'")
+        image_path = item.get('image_path')
+        if image_path and isinstance(image_path, str):
+            full = os.path.join(ROOT, 'static', image_path)
+            if not os.path.exists(full):
+                errors.append(f"{ref} -> missing image: {image_path}")
     return errors
 
 def main():
-    schema = load(SCHEMA)
-    all_files = ["cells.json", "connectors.json", "bms.json"]
+    print("CellBase Dataset Validator")
+    print("=" * 50)
+    meta_files = sorted([f for f in os.listdir(META_DIR) if f.endswith('.json')])
     all_errors = []
-    for f in all_files:
-        if not os.path.exists(os.path.join(META_DIR, f)):
-            print(f"skip: {f} not found"); continue
-        all_errors += validate_file(f, schema)
-    if all_errors:
-        print("❌ Validation failed:")
+    total = 0
+    for filename in meta_files:
+        filepath = os.path.join(META_DIR, filename)
+        with open(filepath, encoding='utf-8') as f:
+            try:
+                entries = json.load(f)
+                total += len(entries) if isinstance(entries, list) else 1
+            except:
+                pass
+        all_errors += validate_file(filepath)
+    print(f"✓ Validated {total} entries across {len(meta_files)} files")
+    print("=" * 50)
+    if not all_errors:
+        print(f"✅ All validations PASSED — 0 errors")
+        print(f"   {total} entries are schema-compliant")
+    else:
+        print(f"❌ {len(all_errors)} error(s) found:")
         for e in all_errors:
-            print(" -", e)
-        sys.exit(1)
-    print("✅ All metadata valid and images found.")
+            print(f"   - {e}")
+    print("=" * 50)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

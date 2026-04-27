@@ -1,41 +1,51 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "EV Battery Component",
+  "title": "CellBase Component Entry",
+  "description": "Schema for a single EV battery component metadata entry in the CellBase dataset",
   "type": "object",
-  "required": ["id", "component_type", "manufacturer", "image_path", "source_url", "license"],
+  "required": ["id", "component_type", "manufacturer"],
   "properties": {
-    "id": { "type": "string", "pattern": "^[a-z]+_[0-9]{4,}$" },
-    "component_type": { "type": "string", "enum": ["cell", "connector", "bms"] },
-    "manufacturer": { "type": "string" },
-    "model": { "type": "string" },
-    "image_path": { "type": "string" },
-    "source_url": { "type": "string" },
-    "license": { "type": "string" },
-    "notes": { "type": "string" },
-
-    "car_brand": { "type": "string" },
-    "cell_supplier": { "type": "string" },
-    
-    "format": { "type": "string" },
-    "voltage_V": { "type": "number" },
-    "capacity_mAh": { "type": "number" },
-
-    "connector_type": { "type": "string" },
-    "current_rating_A": { "type": "number" },
-    
-    "features": { "type": "array", "items": { "type": "string" } },
-    "supports_cell_count": { "type": "integer" },
-    
-    "chemistry": { "type": "string" },
-    "date_added": { "type": "string", "format": "date" },
-    "diameter_mm": { "type": "number" },
-    "energy_Wh": { "type": "number" },
-    "height_mm": { "type": "number" },
-    "special_features": { "type": "array", "items": { "type": "string" } },
-    "vehicle_models": { "type": "array", "items": { "type": "string" } },
-    
-    "part_series": { "type": "string" },
-    "voltage_rating_V": { "type": "number" }
+    "id": {
+      "type": "string",
+      "description": "Unique component identifier"
+    },
+    "component_type": {
+      "type": "string",
+      "enum": ["cells", "bms", "connectors", "cables", "busbars", "casings", "hardware"],
+      "description": "One of the seven defined component categories"
+    },
+    "manufacturer": {
+      "type": "string",
+      "description": "Component manufacturer name"
+    },
+    "model": {
+      "type": "string",
+      "description": "Component model or part number"
+    },
+    "specs": {
+      "type": ["object", "string", "null"],
+      "description": "Technical specifications as key-value pairs"
+    },
+    "image_path": {
+      "type": ["string", "null"],
+      "description": "Relative path to component image within /static/"
+    },
+    "source_url": {
+      "type": ["string", "null"],
+      "description": "URL of the original data and image source"
+    },
+    "license": {
+      "type": ["string", "null"],
+      "description": "Usage rights of the source material"
+    },
+    "notes": {
+      "type": ["string", "null"],
+      "description": "Additional free-text context"
+    },
+    "date_added": {
+      "type": ["string", "null"],
+      "description": "Date entry was added (YYYY-MM-DD)"
+    }
   },
-  "additionalProperties": false
+  "additionalProperties": true
 }

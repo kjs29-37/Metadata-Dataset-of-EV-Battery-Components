@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div style="max-width:420px;margin:80px auto;">
+
+  <div style="text-align:center;margin-bottom:36px;">
+    <div class="hero-eyebrow">Admin Access</div>
+    <h1 class="page-title" style="font-size:2rem;">Sign In</h1>
+    <p style="color:var(--text-muted);font-size:0.9rem;">CellBase Dataset Management</p>
+  </div>
+
+  <div class="panel">
+    <form method="post" action="{{ url_for('login') }}">
+      <div class="form-row">
+        <label for="username">Username</label>
+        <input class="input" type="text" name="username" id="username"
+               required autocomplete="username" placeholder="Enter username">
+      </div>
+      <div class="form-row">
+        <label for="password">Password</label>
+        <input class="input" type="password" name="password" id="password"
+               required autocomplete="current-password" placeholder="Enter password">
+      </div>
+      <button class="btn full" type="submit" style="margin-top:8px;">Sign In</button>
+    </form>
+    <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border);
+                text-align:center;font-size:0.8rem;color:var(--text-muted);">
+      Only authorised administrators can sign in.<br>
+      Return to <a href="{{ url_for('landing') }}"
+         style="color:var(--gold);text-decoration:underline;">public site</a>.
+    </div>
+  </div>
+</div>
+
+{% endblock %}

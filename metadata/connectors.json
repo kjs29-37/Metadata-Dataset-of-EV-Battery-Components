@@ -1,19 +1,114 @@
 [
-    
-      
-        {
-          "id": "connector_0001",
-          "component_type": "connector",
-          "manufacturer": "TE Connectivity",
-          "part_series": "AMP+ HVP 800",
-          "connector_type": "HV connector",
-          "current_rating_A": 200,
-          "voltage_rating_V": 850,
-          "image_path": "images/connectors/connector_0001.jpg",
-          "source_url": "https://www.te.com/en/products/connectors/automotive-connectors/intersection/amp-high-current-connector-system-hvp-800.html",
-          "license": "Manufacturer promotional",
-          "notes": "90-degree high-voltage plug. Widely used in Tesla and other EVs for battery-to-inverter connections. Features HVIL and 360-degree shielding."
-        }
-      
-  ]
-  
+  {
+    "id": "chevy_bolt_connector_0001",
+    "component_type": "connectors",
+    "manufacturer": "Delphi Technologies / Aptiv",
+    "model": "Chevrolet Bolt EV HV Service Disconnect Connector",
+    "image_path": "images/connectors/chevy_bolt_connector001.jpg",
+    "source_url": "https://www.diyelectriccar.com/threads/chevy-bolt-battery-pack-teardown.194132/",
+    "license": "Educational reference",
+    "notes": "",
+    "connector_type": "HV service disconnect / interlock",
+    "current_rating_A": 250,
+    "voltage_rating_V": 600,
+    "date_added": "2026-03-12"
+  },
+  {
+    "id": "connector_0001",
+    "component_type": "connectors",
+    "manufacturer": "TE Connectivity",
+    "model": "AMP+ HVP 800",
+    "image_path": "images/connectors/connector_0001.jpg",
+    "source_url": "https://www.te.com/en/products/connectors/automotive-connectors/intersection/amp-high-current-connector-system-hvp-800.html",
+    "license": "Educational reference",
+    "notes": "",
+    "part_series": "AMP+ HVP 800",
+    "connector_type": "HV connector",
+    "current_rating_A": 200,
+    "voltage_rating_V": 850,
+    "date_added": "2025-11-14"
+  },
+  {
+    "id": "ford_mache_connector_0001",
+    "component_type": "connectors",
+    "manufacturer": "Ford",
+    "model": "Ford Mustang Mach-E HV Battery Service Disconnect Connector",
+    "image_path": "images/connectors/Mach-e_connector.png",
+    "source_url": "https://www.youtube.com/watch?v=eVi0MQFy9K8",
+    "license": "Educational reference",
+    "notes": "Manual service disconnect connector on the Mach-E HV battery pack. Removing this connector breaks the HV circuit for safe service. Includes a High Voltage Interlock Loop (HVIL) that signals the BECM when disconnected, preventing accidental energisation. Reference from connector inspection teardown video.",
+    "connector_type": "HV service disconnect / interlock",
+    "voltage_rating_V": 400,
+    "current_rating_A": 300,
+    "vehicle_models": [
+      "Ford Mustang Mach-E",
+      "Ford F-150 Lightning"
+    ],
+    "date_added": "2026-03-26"
+  },
+  {
+    "id": "hyundai_ioniq5_connector_0001",
+    "component_type": "connectors",
+    "manufacturer": "Hyundai",
+    "model": "Ioniq 5 800V HV Connector",
+    "image_path": "",
+    "source_url": "https://www.hyundai.co.uk/electric-cars/ioniq5",
+    "license": "Educational reference",
+    "notes": "800V-rated HV connector unique to E-GMP. Enables 350kW ultra-fast charging.",
+    "connector_type": "800V HV connector",
+    "voltage_rating_V": 800,
+    "current_rating_A": 350,
+    "vehicle_models": [
+      "Hyundai Ioniq 5",
+      "Kia EV6"
+    ],
+    "date_added": "2026-03-24"
+  },
+  {
+    "id": "nissan_leaf_connector_0001",
+    "component_type": "connectors",
+    "manufacturer": "Nissan",
+    "model": "Leaf Gen 1 BMS Comms & Balance Cable Loom Connector",
+    "image_path": "images/connectors/nissan_leaf_connector_001.jpg",
+    "source_url": "https://ecotrustbatteries.co.uk/shop/nissan-leaf-battery-cables/nissan-leaf-gen-1-24kwh-bms-comms-and-balance-cable-loom/",
+    "license": "Educational reference",
+    "notes": "",
+    "connector_type": "BMS communication connector",
+    "date_added": "2026-02-27"
+  },
+  {
+    "id": "renault_zoe_connector_0001",
+    "component_type": "connectors",
+    "manufacturer": "Renault",
+    "model": "Zoe Z.E. 50 HV Battery Connector",
+    "image_path": "",
+    "source_url": "https://www.renault.co.uk/electric-vehicles/zoe/range-and-battery.html",
+    "license": "Educational reference",
+    "notes": "HV connector for the 52kWh pack. Orange housing identifies HV circuit.",
+    "connector_type": "HV battery connector",
+    "voltage_rating_V": 400,
+    "vehicle_models": [
+      "Renault Zoe Z.E. 50"
+    ],
+    "date_added": "2026-03-24"
+  },
+  {
+    "id": "vw_id4_connector_0001",
+    "component_type": "connectors",
+    "manufacturer": "Volkswagen AG",
+    "model": "Volkswagen ID.4 MEB HV Connector & Service Disconnect",
+    "image_path": "images/connectors/ID4_Connector.jpg",
+    "source_url": "https://www.batterydesign.net/volkswagen-meb-battery-pack-id-family/",
+    "license": "Educational reference",
+    "notes": "High-voltage connector and service disconnect for the MEB battery pack as documented by Battery Design. Orange housing identifies HV circuit. Includes HVIL (High Voltage Interlock Loop) for safe servicing.",
+    "connector_type": "HV service disconnect / module connector",
+    "voltage_rating_V": 400,
+    "current_rating_A": 300,
+    "vehicle_models": [
+      "Volkswagen ID.4",
+      "Volkswagen ID.3",
+      "Audi Q4 e-tron"
+    ],
+    "date_added": "2026-03-26"
+  }
+]

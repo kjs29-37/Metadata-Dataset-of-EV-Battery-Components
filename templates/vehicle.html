@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="page-hero">
+  <h1>{{ brand_display }}</h1>
+  <p>{{ components|length }} component{{ 's' if components|length != 1 else '' }} in this platform</p>
+</div>
+
+<div class="browse-layout">
+  <aside class="browse-sidebar">
+    <form method="get" action="{{ url_for('vehicle', brand=brand) }}">
+
+      <div class="sidebar-section">
+        <a class="sidebar-reset" href="{{ url_for('landing') }}" style="display:block;margin-bottom:14px;font-size:0.75rem;color:var(--text-muted);">
+          &larr; All vehicles
+        </a>
+        <input class="sidebar-search" type="text" name="q"
+               placeholder="Search model, ID..."
+               value="{{ request.args.get('q','') }}">
+        <button class="sidebar-apply" type="submit">Apply</button>
+        <a class="sidebar-reset" href="{{ url_for('vehicle', brand=brand) }}">Clear</a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-label">Component Type</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="{{ url_for('vehicle', brand=brand) }}"
+               class="{{ 'active' if not request.args.get('type') or request.args.get('type')=='all' else '' }}">
+              All Types
+            </a>
+          </li>
+          {% for t in component_types %}
+          <li>
+            <a href="{{ url_for('vehicle', brand=brand, type=t) }}"
+               class="{{ 'active' if request.args.get('type')==t else '' }}">
+              {{ t|title }}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+        <input type="hidden" name="type" value="{{ request.args.get('type','all') }}" id="type-hidden">
+      </div>
+
+    </form>
+  </aside>
+
+  <main class="browse-main">
+    <div class="browse-header">
+      <span class="browse-count"><strong>{{ components|length }}</strong> results</span>
+    </div>
+
+    {% if components|length == 0 %}
+      <div class="panel" style="text-align:center;padding:48px;">
+        <p style="color:var(--text-muted);">No results. Try changing your filters.</p>
+      </div>
+    {% else %}
+      <div class="cards">
+        {% for c in components %}
+          <a class="card" href="{{ url_for('view_detail', id=c['id']) }}">
+            <div class="card-img-wrap">
+              {% if c['image_path'] %}
+                <img class="card-img" src="{{ url_for('static', filename=c['image_path']) }}" alt="{{ c['manufacturer'] }}">
+              {% else %}
+                <div class="card-img-placeholder">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="2" y="6" width="16" height="12" rx="2"/><rect x="18" y="9" width="3" height="6" rx="1.5"/>
+                  </svg>
+                  Image pending
+                </div>
+              {% endif %}
+            </div>
+            <div class="card-body">
+              <span class="badge">{{ c['type']|upper }} &bull; {{ c['id'] }}</span>
+              <h3 class="card-title">{{ c['manufacturer'] }}</h3>
+              <div class="card-meta">{{ c['model'] if c['model'] else 'Model N/A' }}</div>
+              {% if not c['image_path'] %}<span class="card-placeholder-tag">Coming soon</span>{% endif %}
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </main>
+</div>
+
+<script>
+document.querySelectorAll('.sidebar-links a').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const url = new URL(this.href);
+    const type = url.searchParams.get('type') || 'all';
+    document.getElementById('type-hidden').value = type;
+    this.closest('form').submit();
+  });
+});
+</script>
+
+{% endblock %}

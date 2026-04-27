@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="about-page-hero">
+  <div class="hero-eyebrow">CS3IP &middot; Final Year Project</div>
+  <h1 class="page-title">About CellBase</h1>
+  <p class="page-subtitle">An open metadata dataset of EV battery components, built for AI research and engineering education.</p>
+</div>
+
+<div class="about-grid">
+  <div class="about-main">
+
+    <div class="about-panel">
+      <h2>Project Overview</h2>
+      <p>CellBase is a structured, annotated collection of metadata and images covering the core components of electric vehicle battery packs. It was developed as a Computer Science final year project (CS3IP) at Aston University.</p>
+      <p>The dataset addresses a clear gap in publicly available resources: while EV battery research is growing rapidly, there is no open, component-level metadata repository formatted for both human navigation and AI training pipelines. CellBase fills that gap.</p>
+    </div>
+
+    <div class="about-panel">
+      <h2>What the Dataset Contains</h2>
+      <div class="component-type-grid">
+        <div class="ctype-item"><span class="ctype-icon">🔋</span><span>Cells</span></div>
+        <div class="ctype-item"><span class="ctype-icon">🖥️</span><span>BMS Units</span></div>
+        <div class="ctype-item"><span class="ctype-icon">🔌</span><span>Connectors</span></div>
+        <div class="ctype-item"><span class="ctype-icon">⚡</span><span>Cables</span></div>
+        <div class="ctype-item"><span class="ctype-icon">➖</span><span>Busbars</span></div>
+        <div class="ctype-item"><span class="ctype-icon">🛡️</span><span>Casings</span></div>
+        <div class="ctype-item"><span class="ctype-icon">🔩</span><span>Hardware</span></div>
+      </div>
+      <p>Each entry includes: component ID, type, manufacturer, technical specifications, vehicle associations, image, source URL, license, and notes. All entries are validated against a JSON Schema for consistency.</p>
+    </div>
+
+    <div class="about-panel">
+      <h2>Research Applications</h2>
+      <ul class="about-list">
+        <li><strong>AI / ML training</strong> — component classification, object detection, condition monitoring</li>
+        <li><strong>Second-life battery research</strong> — identifying and cataloguing components for reuse</li>
+        <li><strong>Engineering education</strong> — a reference resource for EV battery system design</li>
+        <li><strong>Automotive diagnostics</strong> — structured metadata for battery health analysis tools</li>
+      </ul>
+    </div>
+
+    <div class="about-panel">
+      <h2>Meet the Team</h2>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">KS</div>
+          <div class="team-name">Kabir Sarham</div>
+          <div class="team-role">Student Developer</div>
+          <p style="font-size:0.78rem;color:var(--text-muted);line-height:1.5;">BSc Computer Science, Aston University. Built CellBase as a final year project combining dataset curation and GUI development.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">AR</div>
+          <div class="team-name">Dr Alireza Rastegarpanah</div>
+          <div class="team-role">Project Supervisor</div>
+          <p style="font-size:0.78rem;color:var(--text-muted);line-height:1.5;">Research interests include machine learning, computer vision, and intelligent systems.</p>
+          <a class="team-link" href="https://www.arastegarpanah.com" target="_blank" rel="noopener noreferrer">Visit website &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-panel">
+      <h2>Technical Stack</h2>
+      <div class="tech-stack">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">Flask</span>
+        <span class="tech-tag">SQLite</span>
+        <span class="tech-tag">JSON Schema</span>
+        <span class="tech-tag">HTML / CSS</span>
+        <span class="tech-tag">Jinja2</span>
+      </div>
+    </div>
+
+  </div>
+
+  <aside class="about-sidebar">
+
+    <div class="sidebar-info-panel">
+      <span class="sidebar-info-label">Vehicle Platforms</span>
+      <div class="platform-list">
+        <div class="platform-item">
+          <span class="platform-dot tesla-dot"></span>
+          <div><strong>Tesla</strong><div class="platform-sub">Model S, 3, Y, Cybertruck</div></div>
+        </div>
+        <div class="platform-item">
+          <span class="platform-dot nissan-dot"></span>
+          <div><strong>Nissan Leaf</strong><div class="platform-sub">Gen 1 · 24kWh</div></div>
+        </div>
+        <div class="platform-item">
+          <span class="platform-dot chevy-dot"></span>
+          <div><strong>Chevrolet Bolt</strong><div class="platform-sub">EV · EUV · 60kWh</div></div>
+        </div>
+        <div class="platform-item">
+          <span class="platform-dot vw-dot"></span>
+          <div><strong>Volkswagen ID.4</strong><div class="platform-sub">MEB Platform</div></div>
+        </div>
+        <div class="platform-item">
+          <span class="platform-dot zoe-dot"></span>
+          <div><strong>Renault Zoe</strong><div class="platform-sub">Z.E. 50 · 52kWh</div></div>
+        </div>
+        <div class="platform-item">
+          <span class="platform-dot ioniq-dot"></span>
+          <div><strong>Hyundai Ioniq 5</strong><div class="platform-sub">E-GMP Platform</div></div>
+        </div>
+        <div class="platform-item">
+          <span class="platform-dot mach-dot"></span>
+          <div><strong>Ford Mustang Mach-E</strong><div class="platform-sub">Extended Range</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-info-panel">
+      <span class="sidebar-info-label">Dataset License</span>
+      <p style="font-size:0.82rem;color:var(--text-muted);line-height:1.6;">All entries are marked with individual source licenses. Images and metadata are collected for educational and research purposes. Please check individual entry source URLs for original licensing terms.</p>
+    </div>
+
+  </aside>
+</div>
+
+{% endblock %}

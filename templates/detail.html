@@ -1,50 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ component.id }} Details</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="bg-light">
+{% extends "base.html" %}
+{% block content %}
 
-<div class="container mt-5">
-    <a href="/" class="btn btn-outline-secondary mb-3">← Back to Dashboard</a>
-    
-    <div class="card shadow-lg">
-        <div class="row g-0">
-            <div class="col-md-5 bg-white d-flex align-items-center justify-content-center p-3">
-                <img src="/static/{{ component.image_path }}" class="img-fluid rounded" alt="Component Image">
-            </div>
-            
-            <div class="col-md-7">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <h2 class="card-title">{{ component.manufacturer }} {{ component.model }}</h2>
-                        <span class="badge bg-primary fs-6 align-self-center">{{ component.type|upper }}</span>
-                    </div>
-                    <p class="text-muted">ID: {{ component.id }}</p>
-                    <hr>
-                    
-                    <h5>Technical Specifications</h5>
-                    <table class="table table-striped table-hover">
-                        <tbody>
-                            {% for key, value in specs.items() %}
-                            <tr>
-                                <th scope="row" class="text-capitalize">{{ key.replace('_', ' ') }}</th>
-                                <td>{{ value }}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-
-                    <div class="mt-4">
-                        <a href="{{ component.source_url }}" target="_blank" class="btn btn-info text-white">View Original Source</a>
-                        <a href="{{ url_for('export_json', id=component.id) }}" class="btn btn-dark">⬇ Export JSON</a>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="breadcrumb">
+  <a href="{{ url_for('landing') }}">Home</a>
+  <span class="breadcrumb-sep">/</span>
+  <a href="{{ url_for('index') }}">Browse</a>
+  <span class="breadcrumb-sep">/</span>
+  <span class="breadcrumb-current">{{ component['id'] }}</span>
 </div>
 
-</body>
-</html>
+<div class="detail-layout">
+  <div class="detail-img-panel">
+    {% if component['image_path'] %}
+      <img src="{{ url_for('static', filename=component['image_path']) }}" alt="{{ component['manufacturer'] }}">
+    {% else %}
+      <div style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--parchment);color:var(--border-mid);gap:12px;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+          <rect x="2" y="6" width="16" height="12" rx="2"/><rect x="18" y="9" width="3" height="6" rx="1.5"/>
+        </svg>
+        <span style="font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;">Image coming soon</span>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="detail-info">
+    <div class="detail-type">{{ component['type']|upper }}</div>
+    <h1 class="detail-title">{{ component['manufacturer'] }}</h1>
+    <div class="detail-id">{{ component['id'] }}</div>
+
+    <div style="margin-bottom:24px;">
+      <div class="spec-row">
+        <span class="spec-key">Type</span><span class="spec-val">{{ component['type']|title }}</span>
+      </div>
+      <div class="spec-row">
+        <span class="spec-key">Manufacturer</span><span class="spec-val">{{ component['manufacturer'] }}</span>
+      </div>
+      {% if component['model'] %}
+      <div class="spec-row">
+        <span class="spec-key">Model</span><span class="spec-val">{{ component['model'] }}</span>
+      </div>
+      {% endif %}
+      {% if component['source_url'] and component['source_url'] != 'N/A' %}
+      <div class="spec-row">
+        <span class="spec-key">Source</span>
+        <span class="spec-val"><a href="{{ component['source_url'] }}" target="_blank" rel="noopener noreferrer" class="source-link">View original source &rarr;</a></span>
+      </div>
+      {% endif %}
+    </div>
+
+    {% if specs %}
+    <div style="margin-bottom:24px;">
+      <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border);">Specifications</div>
+      {% for k, v in specs.items() %}
+        {% if k not in ['note','date_added','vehicle_models','special_features','features','notes'] %}
+        <div class="spec-row">
+          <span class="spec-key">{{ k.replace('_',' ')|title }}</span>
+          <span class="spec-val">{% if v is iterable and v is not string %}{{ v|join(', ') }}{% else %}{{ v }}{% endif %}</span>
+        </div>
+        {% endif %}
+      {% endfor %}
+      {% if specs.get('vehicle_models') %}
+      <div class="spec-row"><span class="spec-key">Vehicles</span><span class="spec-val">{{ specs['vehicle_models']|join(', ') }}</span></div>
+      {% endif %}
+      {% if specs.get('features') %}
+      <div class="spec-row"><span class="spec-key">Features</span><span class="spec-val">{{ specs['features']|join(' · ') }}</span></div>
+      {% endif %}
+      {% if specs.get('special_features') %}
+      <div class="spec-row"><span class="spec-key">Special Features</span><span class="spec-val">{{ specs['special_features']|join(' · ') }}</span></div>
+      {% endif %}
+      {% set note_text = specs.get('notes') or specs.get('note') %}
+      {% if note_text %}
+      <div class="spec-row" style="flex-direction:column;gap:6px;">
+        <span class="spec-key">Notes</span>
+        <span class="spec-val" style="font-size:0.82rem;line-height:1.6;color:var(--text-muted);">{{ note_text }}</span>
+      </div>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    <div class="detail-actions">
+      <a class="btn" href="{{ url_for('export_json', id=component['id']) }}">Export JSON</a>
+      <a class="btn secondary" href="{{ url_for('index') }}">Back to browse</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

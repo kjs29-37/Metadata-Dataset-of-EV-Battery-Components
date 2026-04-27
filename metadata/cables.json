@@ -1,20 +1,117 @@
 [
-    {
-      "id": "cable_0001",
-      "component_type": "cable",
-      "manufacturer": "Coroplast / Huber+Suhner",
-      "model": "Shielded HV Battery Cable",
-      "specs": {
-        "cross_section": "50mm²",
-        "conductor_material": "Stranded Copper",
-        "insulation": "Silicone Rubber (Orange)",
-        "shielding": "Tinned Copper Braid (EMC Protection)",
-        "temp_rating": "-40°C to +180°C"
-      },
-      "vehicle_models": ["Tesla Model S", "Audi e-tron", "Porsche Taycan"],
-      "image_path": "images/cables/cable_0001.jpg",
-      "source_url": "https://www.coroplast-tape.com/en/products/high-voltage-cables/",
-      "license": "Representative / Educational",
-      "notes": "High-voltage interconnect cable. Features distinct orange insulation for safety and internal braided shielding to prevent electromagnetic interference (EMI)."
-    }
-  ]
+  {
+    "id": "cable_0001",
+    "component_type": "cables",
+    "manufacturer": "Coroplast / Huber+Suhner",
+    "model": "Shielded HV Battery Cable",
+    "image_path": "images/cables/cable_0001.jpg",
+    "source_url": "https://www.coroplast-tape.com/en/products/high-voltage-cables/",
+    "license": "Educational reference",
+    "notes": "",
+    "specs": {
+      "cross_section": "50mm²",
+      "conductor_material": "Stranded Copper",
+      "insulation": "Silicone Rubber (Orange)",
+      "shielding": "Tinned Copper Braid (EMC Protection)",
+      "temp_rating": "-40°C to +180°C"
+    },
+    "date_added": "2025-11-14"
+  },
+  {
+    "id": "chevy_bolt_cable_0001",
+    "component_type": "cables",
+    "manufacturer": "GM / Delphi Technologies",
+    "model": "Chevrolet Bolt EV HV Orange Interconnect Cable",
+    "image_path": "images/cables/chevy_bolt_cable_001.png",
+    "source_url": "https://www.diyelectriccar.com/threads/chevy-bolt-battery-pack-teardown.194132/",
+    "license": "Educational reference",
+    "notes": "",
+    "specs": {
+      "cross_section": "35mm²",
+      "conductor_material": "Stranded Copper",
+      "insulation": "Cross-linked Polyethylene (Orange)",
+      "voltage_rating": "600V DC",
+      "temp_rating": "-40°C to +150°C"
+    },
+    "date_added": "2026-03-12"
+  },
+  {
+    "id": "ford_mache_cable_0001",
+    "component_type": "cables",
+    "manufacturer": "Ford",
+    "model": "Ford Mustang Mach-E HV Orange Interconnect Cable",
+    "image_path": "images/cables/Mach-e_cable.png",
+    "source_url": "https://www.youtube.com/watch?v=c2DmFRBspe4",
+    "license": "Educational reference",
+    "notes": "High-voltage orange interconnect cable connecting the Mach-E battery pack to the power electronics and inverter. Orange insulation is the industry-standard EV safety colour for HV systems. Reference from HV cable inspection teardown video.",
+    "conductor_material": "Stranded Copper",
+    "insulation": "Cross-linked Polyethylene (Orange)",
+    "voltage_rating": "400V DC",
+    "vehicle_models": [
+      "Ford Mustang Mach-E Extended Range"
+    ],
+    "date_added": "2026-03-26"
+  },
+  {
+    "id": "hyundai_ioniq5_cable_0001",
+    "component_type": "cables",
+    "manufacturer": "Hyundai",
+    "model": "Ioniq 5 E-GMP 800V HV Cable",
+    "image_path": "",
+    "source_url": "https://www.hyundai.co.uk/electric-cars/ioniq5",
+    "license": "Educational reference",
+    "notes": "800V-rated HV cable for E-GMP platform. Higher insulation rating than standard 400V EV cables.",
+    "conductor_material": "Stranded Copper",
+    "voltage_rating": "800V DC",
+    "vehicle_models": [
+      "Hyundai Ioniq 5"
+    ],
+    "date_added": "2026-03-24"
+  },
+  {
+    "id": "nissan_leaf_cable_hv_0001",
+    "component_type": "cables",
+    "manufacturer": "Nissan",
+    "model": "Leaf Gen 1 High-Voltage Battery Cable",
+    "image_path": "images/cables/nissan_leaf_cable_001.jpg",
+    "source_url": "https://www.ebay.com/sch/i.html?_nkw=nissan+leaf+low+voltage+connector",
+    "license": "Educational reference",
+    "notes": "",
+    "date_added": "2026-02-27"
+  },
+  {
+    "id": "renault_zoe_cable_0001",
+    "component_type": "cables",
+    "manufacturer": "Renault",
+    "model": "Zoe Z.E. 50 HV Cable",
+    "image_path": "",
+    "source_url": "https://www.renault.co.uk/electric-vehicles/zoe/range-and-battery.html",
+    "license": "Educational reference",
+    "notes": "HV interconnect cable for the Renault Zoe battery system.",
+    "conductor_material": "Stranded Copper",
+    "insulation": "Orange XLPE",
+    "voltage_rating": "400V DC",
+    "vehicle_models": [
+      "Renault Zoe Z.E. 50"
+    ],
+    "date_added": "2026-03-24"
+  },
+  {
+    "id": "vw_id4_cable_0001",
+    "component_type": "cables",
+    "manufacturer": "Volkswagen AG",
+    "model": "Volkswagen ID.4 MEB High Voltage Orange Cable",
+    "image_path": "images/cables/ID4_cable.jpg",
+    "source_url": "https://www.ebay.co.uk/itm/188162241564",
+    "license": "Educational reference",
+    "notes": "High-voltage orange interconnect cable for the MEB platform. Connects battery pack to power electronics module. Orange insulation is the industry-standard EV safety colour for HV systems, alerting first responders to high-voltage risk.",
+    "conductor_material": "Stranded Copper",
+    "insulation": "Cross-linked Polyethylene (Orange)",
+    "voltage_rating": "400V DC",
+    "vehicle_models": [
+      "Volkswagen ID.4",
+      "Volkswagen ID.3"
+    ],
+    "date_added": "2026-03-26"
+  }
+]

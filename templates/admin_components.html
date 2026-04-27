@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div style="margin-bottom:32px;">
+  <div class="breadcrumb">
+    <a href="{{ url_for('admin_dashboard') }}">Admin</a>
+    <span class="breadcrumb-sep">/</span>
+    <span class="breadcrumb-current">All Components</span>
+  </div>
+  <h1 class="page-title">Component Management</h1>
+  <p style="color:var(--text-muted);font-size:0.9rem;">{{ components|length }} components shown</p>
+</div>
+
+<!-- Admin Nav -->
+<div style="display:flex;gap:8px;margin-bottom:32px;flex-wrap:wrap;">
+  <a href="{{ url_for('admin_dashboard') }}" class="btn secondary">Dashboard</a>
+  <a href="{{ url_for('admin_components') }}" class="btn">All Components</a>
+  <a href="{{ url_for('admin_hidden') }}" class="btn secondary">Hidden</a>
+  <a href="{{ url_for('add_component') }}" class="btn secondary">Add Component</a>
+</div>
+
+<!-- Search & filter -->
+<form method="get" action="{{ url_for('admin_components') }}"
+      style="display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap;">
+  <input class="input" name="q" placeholder="Search ID, manufacturer, model..."
+         value="{{ request.args.get('q','') }}"
+         style="flex:1;min-width:200px;">
+  <select name="type" class="input" style="width:160px;">
+    <option value="all">All types</option>
+    {% for t in component_types %}
+      <option value="{{ t }}" {{ 'selected' if request.args.get('type')==t else '' }}>{{ t|title }}</option>
+    {% endfor %}
+  </select>
+  <button class="btn" type="submit">Filter</button>
+  <a class="btn secondary" href="{{ url_for('admin_components') }}">Reset</a>
+</form>
+
+<!-- Table -->
+<div class="panel" style="padding:0;overflow:hidden;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.84rem;">
+    <thead>
+      <tr style="background:var(--ink);">
+        <th style="text-align:left;padding:14px 16px;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.7);font-weight:600;">ID</th>
+        <th style="text-align:left;padding:14px 16px;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.7);font-weight:600;">Type</th>
+        <th style="text-align:left;padding:14px 16px;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.7);font-weight:600;">Manufacturer</th>
+        <th style="text-align:left;padding:14px 16px;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.7);font-weight:600;">Model</th>
+        <th style="text-align:center;padding:14px 16px;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.7);font-weight:600;">Image</th>
+        <th style="text-align:center;padding:14px 16px;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.7);font-weight:600;">Status</th>
+        <th style="text-align:right;padding:14px 16px;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.7);font-weight:600;">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for c in components %}
+      <tr style="border-bottom:1px solid var(--border);
+                 background:{% if c['hidden'] %}var(--gold-light){% elif loop.index % 2 == 0 %}var(--parchment){% else %}var(--surface){% endif %};">
+        <td style="padding:12px 16px;font-family:monospace;font-size:0.75rem;color:var(--text-muted);">{{ c['id'] }}</td>
+        <td style="padding:12px 16px;text-transform:capitalize;font-weight:500;">{{ c['type'] }}</td>
+        <td style="padding:12px 16px;font-weight:600;">{{ c['manufacturer'] }}</td>
+        <td style="padding:12px 16px;color:var(--text-muted);font-size:0.8rem;">{{ c['model'] or '—' }}</td>
+        <td style="padding:12px 16px;text-align:center;">
+          {% if c['image_path'] %}
+            <span style="color:var(--green);font-weight:700;font-size:0.8rem;">✓ Yes</span>
+          {% else %}
+            <span style="color:var(--text-light);font-size:0.8rem;">No image</span>
+          {% endif %}
+        </td>
+        <td style="padding:12px 16px;text-align:center;">
+          {% if c['hidden'] %}
+            <span style="background:var(--gold-light);color:var(--gold);font-size:0.62rem;font-weight:700;
+                         letter-spacing:0.06em;text-transform:uppercase;padding:3px 8px;border-radius:3px;
+                         border:1px solid var(--gold);">Hidden</span>
+          {% else %}
+            <span style="background:var(--green-light);color:var(--green);font-size:0.62rem;font-weight:700;
+                         letter-spacing:0.06em;text-transform:uppercase;padding:3px 8px;border-radius:3px;
+                         border:1px solid var(--green);">Visible</span>
+          {% endif %}
+        </td>
+        <td style="padding:12px 16px;text-align:right;">
+          <div style="display:flex;gap:6px;justify-content:flex-end;align-items:center;">
+            <!-- View -->
+            <a href="{{ url_for('view_detail', id=c['id']) }}"
+               style="font-size:0.72rem;color:var(--text-muted);text-decoration:underline;text-underline-offset:2px;">
+              View
+            </a>
+            <!-- Hide/Show -->
+            <form method="post" action="{{ url_for('admin_toggle_hide', id=c['id']) }}" style="display:inline;">
+              <button type="submit" style="background:none;border:1px solid var(--border-mid);
+                      border-radius:4px;padding:4px 10px;font-size:0.72rem;cursor:pointer;
+                      color:{% if c['hidden'] %}var(--green){% else %}var(--gold){% endif %};
+                      font-family:var(--font-body);">
+                {{ 'Show' if c['hidden'] else 'Hide' }}
+              </button>
+            </form>
+            <!-- Delete -->
+            <form method="post" action="{{ url_for('admin_delete', id=c['id']) }}" style="display:inline;"
+                  onsubmit="return confirm('Delete {{ c['id'] }}? This cannot be undone.');">
+              <button type="submit" style="background:none;border:1px solid #ffcccc;
+                      border-radius:4px;padding:4px 10px;font-size:0.72rem;cursor:pointer;
+                      color:#cc0000;font-family:var(--font-body);">
+                Delete
+              </button>
+            </form>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

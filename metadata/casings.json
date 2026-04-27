@@ -1,14 +1,101 @@
 [
-    {
-      "id": "casing_0001",
-      "component_type": "casing",
-      "manufacturer": " Tesla ",
-      "material": "aluminum/composite",
-      "vehicle_models": "tesla model 3",
-      "image_path": "images/casings/casing_0001.jpg",
-      "source": " lorum ",
-      "source_attribution": "frfrf",
-      "license": "gggg",
-      "notes": ""
-    }
-  ]
+  {
+    "id": "casing_0001",
+    "component_type": "casings",
+    "manufacturer": "Tesla",
+    "model": "Model 3 Battery Enclosure",
+    "image_path": "images/casings/casing_0001.jpg",
+    "source_url": "N/A",
+    "license": "Educational reference",
+    "notes": "",
+    "material": "Aluminum / Composite",
+    "date_added": "2025-11-14"
+  },
+  {
+    "id": "chevy_bolt_casing_0001",
+    "component_type": "casings",
+    "manufacturer": "GM",
+    "model": "Chevrolet Bolt EV 60kWh Battery Pack Enclosure",
+    "image_path": "images/casings/chevy_bolt_casing002.jpg",
+    "source_url": "https://www.motortrend.com/cars/chevrolet/bolt-ev/2017/chevy-bolt-battery-tech/",
+    "license": "Educational reference",
+    "notes": "",
+    "material": "Steel (lower tray) / Aluminium (upper cover)",
+    "date_added": "2026-03-12"
+  },
+  {
+    "id": "ford_mache_casing_0001",
+    "component_type": "casings",
+    "manufacturer": "Ford",
+    "model": "Ford Mustang Mach-E 98.7kWh Battery Pack Enclosure",
+    "image_path": "images/casings/Mach-e_casing.png",
+    "source_url": "https://www.youtube.com/watch?v=8zkLNp8HOCU",
+    "license": "Educational reference",
+    "notes": "Skateboard underbody enclosure for the Mach-E 98.7kWh extended range pack. Steel lower tray provides structural rigidity and crash protection; aluminium upper cover seals the pack. Flat form factor lowers the centre of gravity. Reference from full pack removal teardown video.",
+    "material": "Steel (lower tray) / Aluminium (upper cover)",
+    "vehicle_models": [
+      "Ford Mustang Mach-E Extended Range",
+      "Ford Mustang Mach-E GT"
+    ],
+    "date_added": "2026-03-26"
+  },
+  {
+    "id": "hyundai_ioniq5_casing_0001",
+    "component_type": "casings",
+    "manufacturer": "Hyundai",
+    "model": "Ioniq 5 E-GMP Battery Pack Enclosure",
+    "image_path": "",
+    "source_url": "https://www.hyundai.co.uk/electric-cars/ioniq5",
+    "license": "Educational reference",
+    "notes": "E-GMP underbody enclosure. Flat pack enables low floor height and spacious interior.",
+    "material": "Aluminium",
+    "vehicle_models": [
+      "Hyundai Ioniq 5",
+      "Kia EV6"
+    ],
+    "date_added": "2026-03-24"
+  },
+  {
+    "id": "nissan_leaf_casing_0001",
+    "component_type": "casings",
+    "manufacturer": "Nissan",
+    "model": "Leaf Gen 1 Battery Pack Enclosure",
+    "image_path": "images/casings/nissan_leaf_casing_001.jpg",
+    "source_url": "https://www.ebay.com/itm/275616676936",
+    "license": "Educational reference",
+    "notes": "",
+    "material": "Aluminum",
+    "date_added": "2026-02-27"
+  },
+  {
+    "id": "renault_zoe_casing_0001",
+    "component_type": "casings",
+    "manufacturer": "Renault",
+    "model": "Zoe Z.E. 50 Battery Pack Enclosure",
+    "image_path": "",
+    "source_url": "https://www.renault.co.uk/electric-vehicles/zoe/range-and-battery.html",
+    "license": "Educational reference",
+    "notes": "Floor-mounted skateboard enclosure for the 52kWh Z.E. 50 pack.",
+    "material": "Steel / Aluminium",
+    "vehicle_models": [
+      "Renault Zoe Z.E. 50"
+    ],
+    "date_added": "2026-03-24"
+  },
+  {
+    "id": "vw_id4_casing_0001",
+    "component_type": "casings",
+    "manufacturer": "Volkswagen AG",
+    "model": "Volkswagen ID.4 MEB Battery Pack Enclosure",
+    "image_path": "images/casings/ID4_casing.png",
+    "source_url": "https://www.youtube.com/watch?v=XpXuZYsyRcw",
+    "license": "Educational reference",
+    "notes": "Flat underbody skateboard enclosure for the MEB 77kWh battery pack. Aluminium extrusion frame with steel crash reinforcements and integrated liquid cooling channels. The flat pack lowers the vehicle centre of gravity and enables the spacious interior of the ID.4.",
+    "material": "Aluminium extrusion / Steel reinforcement",
+    "vehicle_models": [
+      "Volkswagen ID.4",
+      "Volkswagen ID.3"
+    ],
+    "date_added": "2026-03-26"
+  }
+]
