@@ -1,8 +1,4 @@
-"""
-import_chevy.py
-Run this once from your project root to add all Chevy Bolt entries to battery_data.db
-Usage: python scripts/import_chevy.py
-"""
+
 
 import json
 import os
@@ -13,7 +9,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DB_PATH  = os.path.join(BASE_DIR, 'battery_data.db')
 META_DIR = os.path.join(BASE_DIR, 'metadata')
 
-# All 7 metadata files
+
 META_FILES = [
     'cells.json',
     'bms.json',
@@ -45,7 +41,7 @@ def import_entry(conn, entry):
     source_url   = entry.get('source_url', 'N/A')
     specs        = flatten_specs(entry)
 
-    # Check if already exists
+   
     existing = conn.execute(
         "SELECT id FROM components WHERE id = ?", (comp_id,)
     ).fetchone()
@@ -69,7 +65,7 @@ def import_entry(conn, entry):
 def main():
     conn = get_db()
 
-    # Ensure source_url column exists (safe to run even if already present)
+   
     try:
         conn.execute("ALTER TABLE components ADD COLUMN source_url TEXT")
         print("Added source_url column.")
@@ -95,7 +91,7 @@ def main():
     conn.commit()
     conn.close()
 
-    # Summary
+   
     print("\n✅ Import complete. All metadata synced to battery_data.db")
     print("   Run your Flask app and check /browse to verify.\n")
 

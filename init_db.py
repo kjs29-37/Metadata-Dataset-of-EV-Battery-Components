@@ -2,17 +2,17 @@ import sqlite3
 import json
 import os
 
-# 1. Setup paths
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(BASE_DIR, 'battery_data.db')
 METADATA_DIR = os.path.join(BASE_DIR, 'metadata')
 
 def init_db():
-    # Connect to database (it creates it if it doesn't exist)
+   
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
-    # 2. Create the Table (The "SQL Schema" you promised)
+   
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS components (
             id TEXT PRIMARY KEY,
@@ -25,15 +25,15 @@ def init_db():
         )
     ''')
 
-    # 3. Load your JSON files into the Database
+   
     files = [
     'cells.json', 
     'bms.json', 
     'connectors.json', 
-    'cables.json',      # <--- Added
-    'busbars.json',     # <--- Added
-    'casings.json',     # <--- Added
-    'hardware.json'     # <--- Added
+    'cables.json',      
+    'busbars.json',     
+    'casings.json',    
+    'hardware.json'    
 ]
     
     print("--- Migrating Data to SQL ---")
@@ -44,7 +44,7 @@ def init_db():
                 data = json.load(f)
                 
             for item in data:
-                # Save flexible specs (like voltage or current) as a string
+              
                 specs = json.dumps({k:v for k,v in item.items() if k not in ['id', 'component_type', 'manufacturer', 'model', 'image_path', 'source_url']})
                 
                 try:
